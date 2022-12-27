@@ -4,9 +4,10 @@ import React, { Component } from "react";
 // import { ColorPicker } from "./ColorPicker/ColorPicker";
 // import TodoList from "./TodoList";
 // import Form from "./Form/Form";
-import TodoListWithScss from "./TodoList/TodoListWithScss";
-import TodoEditor from "./TodoEditor/TodoEditor";
-import Filter from "./Filter";
+// import TodoListWithScss from "./TodoList/TodoListWithScss";
+// import TodoEditor from "./TodoEditor/TodoEditor";
+// import Filter from "./Filter";
+import { LoginForm } from "./LoginForm/LoginForm";
 
 import todos from "../db/todos.json";
 // import colorPickerOptions from "../db/colorPickerOptions.json";
@@ -87,10 +88,10 @@ class App extends Component {
   };
 
   render() {
-    const { todos, filter } = this.state;
-    const totalTodoCount = todos.length;
-    const completedTodosCount = this.getCompletedTodoCount();
-    const visibleTodos = this.getVisibleTodos();
+    // const { todos, filter } = this.state;
+    // const totalTodoCount = todos.length;
+    // const completedTodosCount = this.getCompletedTodoCount();
+    // const visibleTodos = this.getVisibleTodos();
 
     return (
       <>
@@ -99,20 +100,21 @@ class App extends Component {
         {/* <Counter /> */}
         {/* <Dropdown /> */}
         {/* <ColorPicker options={colorPickerOptions} /> */}
-        <div>
+        {/* <div>
           <p>Загальна кількість: {totalTodoCount}</p>
           <p>Кількість виконаних: {completedTodosCount}</p>
-        </div>
+        </div> */}
 
-        <TodoEditor onSubmit={this.addTodo} />
-        <Filter value={filter} onChange={this.changeFilter} />
+        {/* <TodoEditor onSubmit={this.addTodo} />
+        <Filter value={filter} onChange={this.changeFilter} /> */}
 
         {/* <TodoList todos={todos} onDeleteTodo={this.deleteTodo} /> */}
-        <TodoListWithScss
+        {/* <TodoListWithScss
           todos={visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
-        />
+        /> */}
+        <LoginForm />
       </>
     );
   }
