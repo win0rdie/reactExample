@@ -1,35 +1,13 @@
-// import { Example1 } from "./components/Example1";
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import ReactDOM from "react-dom";
-import { ThemeProvider } from "styled-components";
-
-import { GlobalStyle } from "./components/GlobalStyle";
-
-import { Reader } from "./components/Reader/Reader";
+import "modern-normalize/modern-normalize.css";
 import "./index.css";
-import publications from "./publications.json";
-
-const theme = {};
+import "react-toastify/dist/ReactToastify.css";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      {/* <Example1 /> */}
-      <Reader items={publications} />
-    </ThemeProvider>
+    <App />
   </React.StrictMode>
 );
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <ThemeProvider theme={theme}>
-//       <GlobalStyle />
-//       {/* <Example1 /> */}
-//       <Reader items={publications} />
-//     </ThemeProvider>
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
