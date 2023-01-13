@@ -1,83 +1,51 @@
-import { Component } from "react";
-import { GlobalStyle } from "components/GlobalStyle";
-import { Layout } from "components/Layout";
-import { MaterialEditorForm } from "components/MaterialEditorForm/MaterialEditorForm";
-import { MaterialList } from "components/MaterialList/MaterialList";
-import * as API from "./services/api";
-export default class App extends Component {
-  state = {
-    materials: [],
-    isLoading: false,
-    error: null,
-  };
+// import { Routes, Route } from "react-router-dom";
+import AppBar from "./components/AppBar/AppBar";
+import SignupForm from "components/SignupForm/SignupForm";
+import ColorPicker from "./components/ColorPicker/ColorPicker";
+import Counter from "./components/Counter/Counter";
+import Clock from "./components/Clock/Clock";
+// import PokemonView from "./views/PokemonView";
 
-  async componentDidMount() {
-    try {
-      this.setState({ isLoading: true });
-      const materials = await API.getMaterials();
-      this.setState({ materials, isLoading: false });
-    } catch (error) {
-      this.setState({ error: true, isLoading: false });
-      console.log(error);
-    }
-  }
+const colorPickerOptions = [
+  { label: "red", color: "#F44336" },
+  { label: "green", color: "#4CAF50" },
+  { label: "blue", color: "#2196F3" },
+  { label: "grey", color: "#607D8B" },
+  { label: "pink", color: "#E91E63" },
+  { label: "indigo", color: "#3F51B5" },
+];
 
-  addMaterial = async (values) => {
-    try {
-      const material = await API.addMaterial(values);
-      this.setState((state) => ({
-        materials: [...state.materials, material],
-      }));
-    } catch (error) {
-      this.setState({ error: true, isLoading: false });
-      console.log(error);
-    }
-  };
+const containerStyles = {
+  maxWidth: 1170,
+  marginLeft: "auto",
+  marginRight: "auto",
+  paddingLeft: 15,
+  paddingRight: 15,
+};
 
-  deleteMaterial = async (id) => {
-    try {
-      await API.deleteMaterial(id);
-      this.setState((state) => ({
-        materials: state.materials.filter((material) => material.id !== id),
-      }));
-    } catch (error) {
-      this.setState({ error: true });
-      console.log(error);
-    }
-  };
+export default function App() {
+  return (
+    <div style={containerStyles}>
+      <AppBar />
 
-  updateMaterial = async (fields) => {
-    try {
-      const updateMaterial = await API.updateMaterial(fields);
-      this.setState((state) => ({
-        materials: state.materials.map((material) =>
-          material.id === fields.id ? updateMaterial : material
-        ),
-      }));
-    } catch (error) {
-      this.setState({ error: true });
-      console.log(error);
-    }
-  };
+      {/* <Routes> */}
+      {/* <Route path="/signup"> */}
+      <SignupForm />
+      {/* </Route> */}
 
-  render() {
-    const { materials, isLoading, error } = this.state;
-    return (
-      <Layout>
-        <GlobalStyle />
+      {/* <Route path="/colorpicker"> */}
+      <ColorPicker options={colorPickerOptions} />
+      {/* </Route> */}
 
-        {error && <p>Ups, failed</p>}
-        <MaterialEditorForm onSubmit={this.addMaterial} />
-        {isLoading ? (
-          "Downloading"
-        ) : (
-          <MaterialList
-            items={materials}
-            onDelete={this.deleteMaterial}
-            onUpdate={this.updateMaterial}
-          />
-        )}
-      </Layout>
-    );
-  }
+      {/* <Route path="/counter"> */}
+      <Counter />
+      {/* </Route> */}
+
+      {/* <Route path="/clock"> */}
+      <Clock />
+
+      {/* </Route> */}
+      {/* </Routes> */}
+    </div>
+  );
 }
