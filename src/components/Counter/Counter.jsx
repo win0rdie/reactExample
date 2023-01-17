@@ -1,43 +1,46 @@
 // import { useState, useEffect } from "react";
 import styles from "./Counter.module.css";
 // import { Component } from "react";
-import { useState, useEffect } from "react";
+import { useReducer } from "react";
+
+function countReducer(state, action) {
+  // console.log("action---", action);
+  switch (action.type) {
+    case "increment":
+      return { ...state, count: state.count + action.payload };
+
+    case "decrement":
+      return { ...state, count: state.count - action.payload };
+
+    default:
+      throw new Error(`Unsupported action type ${action.type}`);
+  }
+}
 
 export default function Counter() {
-  const [counterA, setCounterA] = useState(0);
-  const [counterB, setCounterB] = useState(0);
-
-  const handleCounterAIncrement = () => {
-    setCounterA((prevState) => prevState + 1);
-  };
-  const handleCounterBIncrement = () => {
-    setCounterB((prevState) => prevState + 1);
-  };
-
-  useEffect(() => {
-    console.log("start useEffect");
-    const totalClicks = counterA + counterB;
-    document.title = `Всего кликнули ${totalClicks} раз`;
-  }, [counterA, counterB]);
+  const [state, dispatch] = useReducer(countReducer, {
+    count: 0,
+  });
 
   return (
-    <>
+    <div className={styles.container}>
+      <p className={styles.value}>{state.count}</p>
       <button
         className={styles.btn}
         type="button"
-        onClick={handleCounterAIncrement}
+        onClick={() => dispatch({ type: "increment", payload: 1 })}
       >
-        Кликнули counterA {counterA} раз
+        Увеличить
       </button>
 
       <button
         className={styles.btn}
         type="button"
-        onClick={handleCounterBIncrement}
+        onClick={() => dispatch({ type: "decrement", payload: 1 })}
       >
-        Кликнули counterB {counterB} раз
+        Уменьшить
       </button>
-    </>
+    </div>
   );
 }
 

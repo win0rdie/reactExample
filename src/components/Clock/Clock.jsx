@@ -11,7 +11,7 @@ export default function Clock() {
       setTime(new Date());
     }, 1000);
     return () => {
-      console.log("func clearing");
+      // console.log("func clearing");
       stop();
     };
   }, []);
