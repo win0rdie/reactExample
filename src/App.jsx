@@ -7,6 +7,7 @@ import Clock from "./components/Clock/Clock";
 import SkipEffectOnFirstRender from "components/SkippEffectOnFirstRender";
 import PokemonView from "components/views/PokemonView";
 import Friends from "components/Friends";
+import MUIForm from "components/MUIForm/MUIForm";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -29,23 +30,24 @@ export default function App() {
   return (
     <div style={containerStyles}>
       <AppBar />
-      <Friends />
-      <SkipEffectOnFirstRender />
-      <PokemonView />
+      {/* <Friends /> */}
+      {/* <SkipEffectOnFirstRender /> */}
+      {/* <PokemonView /> */}
       {/* <Routes> */}
       {/* <Route path="/signup"> */}
-      <SignupForm />
+      {/* <SignupForm /> */}
       {/* </Route> */}
       {/* <Route path="/colorpicker"> */}
-      <ColorPicker options={colorPickerOptions} />
+      {/* <ColorPicker options={colorPickerOptions} /> */}
       {/* </Route> */}
       {/* <Route path="/counter"> */}
-      <Counter />
+      {/* <Counter /> */}
       {/* </Route> */}
       {/* <Route path="/clock"> */}
-      <Clock />
+      {/* <Clock /> */}
       {/* </Route> */}
       {/* </Routes> */}
+      <MUIForm />
     </div>
   );
 }
