@@ -8,6 +8,8 @@ import SkipEffectOnFirstRender from "components/SkippEffectOnFirstRender";
 import PokemonView from "components/views/PokemonView";
 import Friends from "components/Friends";
 import MUIForm from "components/MUIForm/MUIForm";
+import MUIFormWithFormik from "components/MUIFormWithFormik/MUIFormWithFormik";
+import UncontrolledForm from "components/UncontrolledForm/UncontrolledForm";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -47,7 +49,9 @@ export default function App() {
       {/* <Clock /> */}
       {/* </Route> */}
       {/* </Routes> */}
-      <MUIForm />
+      {/* <MUIForm /> */}
+      <MUIFormWithFormik />
+      <UncontrolledForm />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-export const SEX_OPTIONS = Object.freeze({
+export const GENDER_OPTIONS = Object.freeze({
   male: "male",
   female: "female",
   skip: "skip",

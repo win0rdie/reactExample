@@ -9,8 +9,11 @@ import {
   InputLabel,
   FormControl,
   styled as muiStyled,
+  FormLabel,
+  RadioGroup,
+  Radio,
 } from "@mui/material";
-import { CITY_OPTIONS, SEX_OPTIONS } from "constans/loginForm";
+import { CITY_OPTIONS, GENDER_OPTIONS } from "constans/loginForm";
 import { Component } from "react";
 import requestImitator from "utils/requestImitator";
 import css from "./MUIForm.module.css";
@@ -20,7 +23,7 @@ const INITIAL_STATE = {
   email: "",
   password: "",
   agree: false,
-  sex: SEX_OPTIONS.skip,
+  gender: GENDER_OPTIONS.skip,
   city: CITY_OPTIONS.Kyiv,
 };
 const Div = styled.div`
@@ -64,13 +67,15 @@ export default class MUIForm extends Component {
     this.setState({ ...INITIAL_STATE });
   };
   render() {
-    const { email, password, agree, sex } = this.state;
+    const { email, password, agree, city, gender } = this.state;
     const canSubmit =
-      email && password.length > 5 && agree && sex !== SEX_OPTIONS.skip;
+      email && password.length > 5 && agree && gender !== GENDER_OPTIONS.skip;
 
     return (
       <Container maxWidth="xs">
         <form className={css.form}>
+          {/*         SIGN IN        */}
+
           <TextField
             variant="filled"
             label="Email"
@@ -100,18 +105,45 @@ export default class MUIForm extends Component {
             checked={agree}
             onChange={this.handleChangeChecked}
           />
+
+          {/*           GENDER          */}
           <FormControl>
-            <InputLabel id="sex_field">Sex</InputLabel>
-            <Select
-              style={{ textTransform: "capitalize" }}
-              id="sex_field"
-              name="sex"
-              value={sex}
-              label="Sex"
+            <FormLabel id="gender_id">Gender</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              value={gender}
+              id="gender_id"
+              name="gender"
               onChange={this.handleChangeValue}
             >
-              {Object.keys(SEX_OPTIONS).map((key) => {
-                const value = SEX_OPTIONS[key];
+              {Object.keys(GENDER_OPTIONS).map((key) => {
+                const value = GENDER_OPTIONS[key];
+                return (
+                  <FormControlLabel
+                    key={key}
+                    style={{ textTransform: "capitalize" }}
+                    value={value}
+                    control={<Radio />}
+                    label={value}
+                  />
+                );
+              })}
+            </RadioGroup>
+          </FormControl>
+
+          {/*         CITY         */}
+          <FormControl>
+            <InputLabel id="city_field">City</InputLabel>
+            <Select
+              style={{ textTransform: "capitalize" }}
+              id="city_field"
+              name="city"
+              value={city}
+              label="City"
+              onChange={this.handleChangeValue}
+            >
+              {Object.keys(CITY_OPTIONS).map((key) => {
+                const value = CITY_OPTIONS[key];
                 return (
                   <MenuItem
                     style={{ textTransform: "capitalize" }}
