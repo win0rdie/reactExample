@@ -15,7 +15,6 @@ import {
   MenuItem,
   Radio,
   Button,
-  Paper,
 } from "@mui/material";
 
 const MUIFormWithFormik = () => {

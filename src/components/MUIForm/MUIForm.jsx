@@ -46,6 +46,16 @@ export default class MUIForm extends Component {
     ...INITIAL_STATE,
   };
 
+  // componentDidMount() {
+  //   console.log("Component did mount");
+  // }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   console.log("component did update", prevProps, this.props);
+  //   if (prevProps.email !== this.props.email) {
+  //     this.setState({ email: this.props.email });
+  //   }
+  // };
+
   handleChangeValue = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
